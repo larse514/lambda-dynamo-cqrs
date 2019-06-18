@@ -29,5 +29,6 @@ jobs:
           npm run deploy-dev
     - run: 
         name: deploy dev
+        working_directory: /home/circleci/project/command
         command: |
           npm run integration
