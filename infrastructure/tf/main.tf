@@ -1,6 +1,6 @@
 provider "aws" {
   region  = "${var.aws-default-region}"
-  version = "1.60"
+  version = "2.7"
   profile = "default"
 }
 
