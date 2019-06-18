@@ -10,6 +10,7 @@ jobs:
     - checkout
     - run: 
         name: Configure AWS environment
+        working_directory: command
         command: |
             aws configure set default.region us-east-1
             aws configure set default.output json
