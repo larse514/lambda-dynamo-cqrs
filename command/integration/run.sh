@@ -20,3 +20,6 @@ echo "${STATUS}"
 if [ $STATUS != "200" ]; then
     echo "Incorrect status code ${STATUS} from api"
     exit 1
+fi
+
+echo "Tests Passed!"
