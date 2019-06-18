@@ -6,6 +6,9 @@ jobs:
         - master
     docker:
       - image: larse514/circle-ci-node-docker:latest
+    environment:
+      - S3_BUCKET_NAME: "tf-state-command-query"
+      - REGION: "us-east-1"
     steps:
     - checkout
     - run: 
@@ -14,12 +17,21 @@ jobs:
             aws configure set default.region us-east-1
             aws configure set default.output json
     - run: 
+        name: deploy infra
+        working_directory: /home/circleci/project/infrastructure
+        command: |
+          make deploy ENVIRONMENT=dev
+    - run: 
+        name: test infra
+        working_directory: /home/circleci/project/infrastructure
+        command: |
+          make test
+    - run: 
         name: command build
         working_directory: /home/circleci/project/command
         command: |
           npm run install-global-dependencies
           sudo npm install
-          # npm run lint
           npm run test:cover
           npm run build
     - run: 
@@ -38,7 +50,6 @@ jobs:
         command: |
           npm run install-global-dependencies
           sudo npm install
-          # npm run lint
           npm run test:cover
           npm run build
     - run: 
