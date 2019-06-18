@@ -10,12 +10,12 @@ jobs:
     - checkout
     - run: 
         name: Configure AWS environment
-        working_directory: /home/circleci/project/command
         command: |
             aws configure set default.region us-east-1
             aws configure set default.output json
     - run: 
         name: deploy dev
+        working_directory: /home/circleci/project/command
         command: |
           npm run install-global-dependencies
           sudo npm install
