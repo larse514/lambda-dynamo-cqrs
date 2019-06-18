@@ -1,0 +1,31 @@
+{
+  "name": "lambda-command",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "testWithCoverage": "jest --coverage",
+    "install-global-dependencies": "sudo npm i -g typescript && sudo npm i -g typescript && sudo npm i -D @types/node && sudo npm i -g ts-node && sudo npm install -g serverless && sudo npm install typings --global && sudo typings install dt~stripe-node --save --global",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tslint -p tsconfig.json -c tslint.json --fix",
+    "test:watch": "jest --watch",
+    "test:cover": "jest --coverage",
+    "deploy-dev": "sls deploy --verbose -s dev",
+    "integration": "./integration/run.sh user-registration-dev-registerUser"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.8",
+    "aws-sdk": "^2.477.0",
+    "jest": "^24.8.0",
+    "serverless-plugin-typescript": "^1.1.7",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.17.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.5.2"
+  }
+}

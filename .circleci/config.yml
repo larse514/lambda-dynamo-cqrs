@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - master
+    docker:
+      - image: larse514/circle-ci-node-docker:latest
+    steps:
+    - checkout
+    - run: 
+        name: Configure AWS environment
+        command: |
+            aws configure set default.region us-east-1
+            aws configure set default.output json
+    - run: 
+        name: deploy dev
+        command: |
+          npm run install-global-dependencies
+          sudo npm install
+          # npm run lint
+          npm run test:cover
+          npm run build
+          npm run deploy-dev
+          npm run integration
