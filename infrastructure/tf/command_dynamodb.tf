@@ -15,7 +15,6 @@ resource "aws_dynamodb_table" "command-dynamodb-table" {
   }
 
   tags = {
-    Name        = "command-${var.environment}"
     Environment = "${var.environment}"
   }
 }
