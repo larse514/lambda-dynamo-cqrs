@@ -12,7 +12,7 @@
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
     "deploy-dev": "sls deploy --verbose -s dev",
-    "integration": "./integration/run.sh lambda-command"
+    "integration": "./integration/run.sh lambda-command-dev"
   },
   "author": "",
   "license": "ISC",
