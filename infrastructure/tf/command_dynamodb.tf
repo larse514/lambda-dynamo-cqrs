@@ -9,12 +9,8 @@ resource "aws_dynamodb_table" "command-dynamodb-table" {
     type = "S"
   }
 
-  attribute {
-    name = "Name"
-    type = "S"
-  }
-
   tags = {
+    Name        = "command-${var.environment}"
     Environment = "${var.environment}"
   }
 }
