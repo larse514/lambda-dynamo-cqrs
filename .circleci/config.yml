@@ -10,7 +10,7 @@ jobs:
     - checkout
     - run: 
         name: Configure AWS environment
-        working_directory: command
+        working_directory: /home/circleci/project/command
         command: |
             aws configure set default.region us-east-1
             aws configure set default.output json
