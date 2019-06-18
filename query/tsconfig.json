@@ -1,0 +1,27 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+      "target": "es2017",
+      "module": "commonjs",
+      "outDir": "./dist",
+      "strict": true,
+      "baseUrl": "./",
+      "allowJs": true,
+      "typeRoots": [
+        "node_modules/@types"
+      ],
+      "types": [
+        "node"
+      ],
+      "esModuleInterop": true,
+      "inlineSourceMap": true,
+      "noEmitOnError": true,
+      /* Additional Checks */
+      "noUnusedLocals": true /* Report errors on unused locals. */,
+      "noUnusedParameters": false /* Report errors on unused parameters. */,
+      "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+      "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
+      "experimentalDecorators": true, /* Enables experimental support for ES7 decorators. */
+      "emitDecoratorMetadata": true
+    }
+  }

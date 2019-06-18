@@ -14,7 +14,7 @@ jobs:
             aws configure set default.region us-east-1
             aws configure set default.output json
     - run: 
-        name: build
+        name: command build
         working_directory: /home/circleci/project/command
         command: |
           npm run install-global-dependencies
@@ -23,12 +23,31 @@ jobs:
           npm run test:cover
           npm run build
     - run: 
-        name: deploy dev
+        name: command deploy dev
         working_directory: /home/circleci/project/command
         command: |
           npm run deploy-dev
     - run: 
-        name: integration
+        name: command integration
         working_directory: /home/circleci/project/command
+        command: |
+          npm run integration
+    - run: 
+        name: query build
+        working_directory: /home/circleci/project/query
+        command: |
+          npm run install-global-dependencies
+          sudo npm install
+          # npm run lint
+          npm run test:cover
+          npm run build
+    - run: 
+        name: query deploy dev
+        working_directory: /home/circleci/project/query
+        command: |
+          npm run deploy-dev
+    - run: 
+        name: query integration
+        working_directory: /home/circleci/project/query
         command: |
           npm run integration
