@@ -25,6 +25,7 @@ jobs:
         name: test infra
         working_directory: /home/circleci/project/infrastructure
         command: |
+          sudo aws configure set default.region "${AWS_REGION}"
           make test ENVIRONMENT=dev
     - run: 
         name: command build
