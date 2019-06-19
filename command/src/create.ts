@@ -1,8 +1,7 @@
 'use strict'
 
 import { v4 as uuid } from 'uuid';
-import { DynamoDB, AWSError } from 'aws-sdk'
-import { PutItemOutput } from 'aws-sdk/clients/dynamodb';
+import { DynamoDB } from 'aws-sdk'
 
 const dynamoDb = new DynamoDB.DocumentClient()
 const table = process.env.DYNAMODB_TABLE || '';
