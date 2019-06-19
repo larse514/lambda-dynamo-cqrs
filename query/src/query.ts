@@ -1,6 +1,6 @@
 'use strict'
 import { DynamoDB } from 'aws-sdk'
-import { QueryOutput } from 'aws-sdk/clients/dynamodb';
+import { ScanOutput } from 'aws-sdk/clients/dynamodb';
 
 const dynamoDb = new DynamoDB.DocumentClient()
 const table = process.env.DYNAMODB_TABLE || '';
@@ -12,7 +12,10 @@ export const handler = async (event: any, context: any): Promise<any> => {
       TableName: table,
     };
 
-    const result: QueryOutput = await dynamoDb.query(params).promise();
+    const result: ScanOutput = await dynamoDb
+      .scan(params)
+      .promise();
+      
     const customers = result.Items;
     const response = {
       statusCode: 200,
