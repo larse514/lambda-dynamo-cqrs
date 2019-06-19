@@ -1,7 +1,8 @@
 'use strict'
 
 import { v4 as uuid } from 'uuid';
-import { DynamoDB } from 'aws-sdk'
+import { DynamoDB, AWSError } from 'aws-sdk'
+import { PutItemOutput } from 'aws-sdk/clients/dynamodb';
 
 const dynamoDb = new DynamoDB.DocumentClient()
 const table = process.env.DYNAMODB_TABLE || '';
@@ -23,8 +24,8 @@ export const handler = async (event: any, context: any): Promise<any> => {
 
   console.log(params);
 
-  return dynamoDb.put(params, (err, result) => {
-
+  dynamoDb.put(params, (err: AWSError, result: PutItemOutput) => {
+    console.log('here');
     if (err) {
       console.log(err);
       return Promise.reject({
@@ -42,7 +43,7 @@ export const handler = async (event: any, context: any): Promise<any> => {
 
     return Promise.resolve(response);
   });
-
+  console.log('here1');
 
 }
 
