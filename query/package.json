@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "testWithCoverage": "jest --coverage",
-    "install-global-dependencies": "sudo npm i -g typescript && sudo npm i -g typescript && sudo npm i -D @types/node && sudo npm i -g ts-node && sudo npm install -g serverless && sudo npm install typings --global",
+    "install-global-dependencies": "sudo npm i -g typescript && sudo npm i -D @types/node && sudo npm i -g ts-node && sudo npm install -g serverless && sudo npm install typings --global",
     "build": "tsc -p tsconfig.build.json",
     "lint": "tslint -p tsconfig.json -c tslint.json --fix",
     "test:watch": "jest --watch",
