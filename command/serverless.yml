@@ -10,7 +10,7 @@ provider:
   name: aws
   runtime: nodejs10.x
   environment:
-    DYNAMODB_TABLE: create-table
+    DYNAMODB_TABLE: command-dev
 functions:
   create:
     handler: dist/create.handler
