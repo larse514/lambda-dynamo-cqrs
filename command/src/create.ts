@@ -15,9 +15,9 @@ export const handler = async (event: any, context: any): Promise<any> => {
     const params: AWS.DynamoDB.DocumentClient.PutItemInput = {
       TableName: table,
       Item: {
-        id: uuid(),
-        name: request.name,
-        createdAt: timestamp,
+        CustomerId: uuid(),
+        Name: request.name,
+        CreatedAt: timestamp,
       }
     };
 
