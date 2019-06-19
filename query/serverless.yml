@@ -22,15 +22,18 @@ provider:
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/query-dev"
 
 functions:
-  create:
+  query:
     handler: dist/query.handler
     events:
       - http:
           path: getcustomers
           method: get
           cors: true
-      # - stream:
-      #   type: dynamodb
-      #   batchSize: 10
-      #   enabled: true
-      #   arn: { "Fn::GetAtt": ["PuppyDemo", "StreamArn"] }
+  stream:
+    handler: dist/stream.handler
+    events:
+      - stream:
+        type: dynamodb
+        batchSize: 1
+        enabled: true
+        arn: { "arn:aws:dynamodb:us-east-1:281318353574:table/command-dev/stream/2019-06-19T15:38:19.176" }
