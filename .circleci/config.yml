@@ -8,7 +8,7 @@ jobs:
       - image: larse514/circle-ci-node-docker:latest
     environment:
       - S3_BUCKET_NAME: "tf-state-command-query"
-      - REGION: "us-east-1"
+      - AWS_REGION: "us-east-1"
     steps:
     - checkout
     - run: 
