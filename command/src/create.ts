@@ -30,14 +30,14 @@ export const handler = async (event: any, context: any): Promise<any> => {
       body: JSON.stringify({})
     };
 
-    return Promise.resolve(response);
+    return response;
   }
   catch (err) {
     console.log(err);
-    return Promise.reject({
+    return {
       statusCode: 500,
       body: JSON.stringify({})
-    })
+    }
   }
 }
 
