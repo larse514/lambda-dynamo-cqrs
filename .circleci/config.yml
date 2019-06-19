@@ -65,3 +65,7 @@ jobs:
         working_directory: /home/circleci/project/query
         command: |
           npm run integration
+    - run: 
+        name: E2E Test
+        command: |
+          make e2etest
