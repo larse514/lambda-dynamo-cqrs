@@ -1,5 +1,5 @@
 deploy:
-	sudo scripts/deploy.sh $(ENVIRONMENT)
-
+	scripts/deploy.sh $(ENVIRONMENT)
+	
 test:
-	sudo scripts/test.sh
+	scripts/test.sh

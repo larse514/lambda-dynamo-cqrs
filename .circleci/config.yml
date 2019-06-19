@@ -25,7 +25,7 @@ jobs:
         name: test infra
         working_directory: /home/circleci/project/infrastructure
         command: |
-          make test
+          make deploy ENVIRONMENT=dev
     - run: 
         name: command build
         working_directory: /home/circleci/project/command
