@@ -14,7 +14,7 @@ NEWURL=`aws cloudformation describe-stacks \
 
 echo $NEWURL
 
-STATUS=$(curl -s -o /dev/null -w '%{http_code}' $NEWURL/query)
+STATUS=$(curl -s -o /dev/null -w '%{http_code}' $NEWURL/getcustomers)
 
 echo "${STATUS}"
 if [ $STATUS != "200" ]; then

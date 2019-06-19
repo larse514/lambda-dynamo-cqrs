@@ -10,7 +10,17 @@ provider:
   name: aws
   runtime: nodejs10.x
   environment:
-    DYNAMODB_TABLE: query-table
+    DYNAMODB_TABLE: query-dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/query-dev"
+
 functions:
   create:
     handler: dist/query.handler
@@ -19,3 +29,8 @@ functions:
           path: getcustomers
           method: get
           cors: true
+      # - stream:
+      #   type: dynamodb
+      #   batchSize: 10
+      #   enabled: true
+      #   arn: { "Fn::GetAtt": ["PuppyDemo", "StreamArn"] }

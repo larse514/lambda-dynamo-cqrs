@@ -9,7 +9,11 @@ export const handler = async (event: any, context: any): Promise<any> => {
   try {
     // create a response
     const params: AWS.DynamoDB.DocumentClient.QueryInput = {
-      TableName: table
+      TableName: table,
+      KeyConditionExpression: 'HashKey = :hkey',
+      ExpressionAttributeValues: {
+        ':hkey': 'CustomerId'
+      }
     };
 
     const result: QueryOutput = await dynamoDb.query(params).promise();
