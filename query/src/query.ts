@@ -8,12 +8,8 @@ const table = process.env.DYNAMODB_TABLE || '';
 export const handler = async (event: any, context: any): Promise<any> => {
   try {
     // create a response
-    const params: AWS.DynamoDB.DocumentClient.QueryInput = {
+    const params: AWS.DynamoDB.DocumentClient.ScanInput = {
       TableName: table,
-      KeyConditionExpression: 'HashKey = :hkey',
-      ExpressionAttributeValues: {
-        ':hkey': 'CustomerId'
-      }
     };
 
     const result: QueryOutput = await dynamoDb.query(params).promise();
