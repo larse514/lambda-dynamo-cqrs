@@ -16,6 +16,6 @@ functions:
     handler: dist/query.handler
     events:
       - http:
-          path: query
+          path: getcustomers
           method: get
           cors: true
