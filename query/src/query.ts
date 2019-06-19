@@ -15,19 +15,19 @@ export const handler = async (event: any, context: any): Promise<any> => {
     const result: ScanOutput = await dynamoDb
       .scan(params)
       .promise();
-      
+
     const customers = result.Items;
     const response = {
       statusCode: 200,
       body: JSON.stringify({ customers })
     };
-    return Promise.resolve(response)
+    return response
   }
   catch (err) {
     console.log(err);
-    return Promise.reject({
+    return {
       statusCode: 500,
       body: JSON.stringify({})
-    })
+    }
   }
 }
