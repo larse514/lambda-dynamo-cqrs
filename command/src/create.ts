@@ -16,16 +16,14 @@ export const handler = async (event: any, context: any): Promise<any> => {
     TableName: table,
     Item: {
       id: uuid(),
-      text: request.name,
-      checked: false,
+      name: request.name,
       createdAt: timestamp,
-      updatedAt: timestamp
     }
   };
 
   console.log(params);
 
-  dynamoDb.put(params, (err, result) => {
+  return dynamoDb.put(params, (err, result) => {
 
     if (err) {
       console.log(err);
@@ -41,7 +39,7 @@ export const handler = async (event: any, context: any): Promise<any> => {
       statusCode: 200,
       body: JSON.stringify({})
     };
-    
+
     return Promise.resolve(response);
   });
 
