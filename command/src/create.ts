@@ -9,7 +9,8 @@ const table = process.env.DYNAMODB_TABLE || '';
 export const handler = async (event: any, context: any): Promise<any> => {
   try {
     const request: CustomerRequest = JSON.parse(event.body);
-    const timestamp = new Date().getTime()
+    const timestamp = new Date().getTime();
+    console.log(request);
     // create a response
     const params: AWS.DynamoDB.DocumentClient.PutItemInput = {
       TableName: table,
@@ -20,10 +21,12 @@ export const handler = async (event: any, context: any): Promise<any> => {
         createdAt: timestamp,
         updatedAt: timestamp
       }
-    }
+    };
     
-    await dynamoDb.put(params);
+    console.log(params);
 
+    await dynamoDb.put(params);
+    console.log('dynamo success');
     const response = {
       statusCode: 200,
       body: JSON.stringify({})
