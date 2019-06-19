@@ -8,33 +8,23 @@ const dynamoDb = new DynamoDB.DocumentClient()
 const table = process.env.DYNAMODB_TABLE || '';
 
 export const handler = async (event: any, context: any): Promise<any> => {
-
-  const request: CustomerRequest = JSON.parse(event.body);
-  const timestamp = new Date().getTime();
-  console.log(request);
-  // create a response
-  const params: AWS.DynamoDB.DocumentClient.PutItemInput = {
-    TableName: table,
-    Item: {
-      id: uuid(),
-      name: request.name,
-      createdAt: timestamp,
-    }
-  };
-
-  console.log(params);
-
-  dynamoDb.put(params, (err: AWSError, result: PutItemOutput) => {
-    console.log('here');
-    if (err) {
-      console.log(err);
-      return Promise.reject({
-        statusCode: 500,
-        body: JSON.stringify({})
-      })
+  try {
+    const request: CustomerRequest = JSON.parse(event.body);
+    const timestamp = new Date().getTime();
+    console.log(request);
+    // create a response
+    const params: AWS.DynamoDB.DocumentClient.PutItemInput = {
+      TableName: table,
+      Item: {
+        id: uuid(),
+        name: request.name,
+        createdAt: timestamp,
+      }
     };
 
-    console.log(result);
+    console.log(params);
+
+    await dynamoDb.put(params).promise();
 
     const response = {
       statusCode: 200,
@@ -42,9 +32,14 @@ export const handler = async (event: any, context: any): Promise<any> => {
     };
 
     return Promise.resolve(response);
-  });
-  console.log('here1');
-
+  }
+  catch (err) {
+    console.log(err);
+    return Promise.reject({
+      statusCode: 500,
+      body: JSON.stringify({})
+    })
+  }
 }
 
 interface CustomerRequest {
